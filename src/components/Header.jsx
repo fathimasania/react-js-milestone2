@@ -1,30 +1,45 @@
-import React, { useState } from 'react';
-import { Search } from 'lucide-react';
-// Import your images - adjust the path as needed
-import moonIcon from '../assets/images/moon.svg';
+import React from 'react';
+import { Search, Moon, Sun } from 'lucide-react';
+import { useTheme } from '../hooks/ThemeContext';
 import bellIcon from '../assets/images/notification_icon.svg';
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const { darkMode, toggleTheme } = useTheme();
 
   return (
-    <header style={styles.header}>
+    <header style={{
+      ...styles.header,
+      backgroundColor: darkMode ? '#0D0D0D' : '#ffffff',
+      color: darkMode ? '#f9fafb' : '#ffffff'
+    }}>
       {/* Logo */}
       <div style={styles.logoContainer}>
         <div style={styles.logoCircle}>
           <span style={styles.logoText}>C</span>
         </div>
-        <span style={styles.brandName}>Circle Soft</span>
+        <span style={{
+          ...styles.brandName,
+          color: darkMode ? '#f9fafb' : '#000000'
+        }}>Circle Soft</span>
       </div>
 
       {/* Search Bar */}
       <div style={styles.searchContainer}>
         <div style={styles.searchIconContainer}>
-          <Search style={styles.searchIcon} />
+          <Search style={{
+            ...styles.searchIcon,
+            color: darkMode ? '#ffffff' : '#9ca3af'
+          }} />
         </div>
         <input
           type="text"
-          style={styles.searchInput}
+          style={{
+            ...styles.searchInput,
+            backgroundColor: darkMode ? '#2D2D2D' : '#f3f4f6',
+            // border: darkMode ? '1px solid #4b5563' : '1px solid #e5e7eb',
+            color: darkMode ? '#ffffff' : '#374151'
+          }}
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -33,20 +48,24 @@ const Header = () => {
 
       {/* Action Icons */}
       <div style={styles.actionContainer}>
-        <button style={styles.imageButton}>
-          {/* Moon icon image */}
-          <img 
-            src={moonIcon}
-            alt="Dark mode" 
-            style={styles.iconImage} 
-          />
+        <button 
+          style={styles.imageButton}
+          onClick={toggleTheme}
+        >
+          {darkMode ? (
+            <Sun style={{ color: '#fbbf24' }} size={20} />
+          ) : (
+            <Moon style={{ color: '#4b5563' }} size={20} />
+          )}
         </button>
         <button style={styles.notificationButton}>
-          {/* Bell icon image */}
           <img 
             src={bellIcon}
             alt="Notifications" 
-            style={styles.iconImage} 
+            style={{
+              ...styles.iconImage,
+              filter: darkMode ? 'invert(100%)' : 'none'
+            }} 
           />
         </button>
       </div>
@@ -58,6 +77,7 @@ const styles = {
   header: {
     display:'flex',
     width:'100vw',
+    height:'25px',
     padding: 25,
     top:0,
     left:0,

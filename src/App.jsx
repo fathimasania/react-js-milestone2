@@ -1,17 +1,12 @@
-
 import './App.css'
-import Header from './components/Header'
-import Sidebar from './components/Sidebar';
-
+import Dashboard from './components/Dashboard';
+import { ThemeProvider } from './hooks/ThemeContext';
 
 function App() {
-
   return (
-    <>
-      <Header/>
-      <Sidebar/>
-    </>
+    <ThemeProvider>
+      <Dashboard />
+    </ThemeProvider>
   );
 }
-
 export default App
