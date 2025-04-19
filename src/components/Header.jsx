@@ -20,12 +20,16 @@ const Header = () => {
         </div>
         <span style={{
           ...styles.brandName,
-          color: darkMode ? '#f9fafb' : '#000000'
+          color: darkMode ? '#f9fafb' : '#000000',
+          display: { xs: 'none', sm: 'block' } // Hide on small screens
         }}>Circle Soft</span>
       </div>
 
       {/* Search Bar */}
-      <div style={styles.searchContainer}>
+      <div style={{
+        ...styles.searchContainer,
+        display: { xs: 'none', md: 'block' }
+      }}>
         <div style={styles.searchIconContainer}>
           <Search style={{
             ...styles.searchIcon,
@@ -75,15 +79,17 @@ const Header = () => {
 
 const styles = {
   header: {
-    display:'flex',
-    width:'100vw',
-    height:'25px',
-    padding: 25,
-    top:0,
-    left:0,
-    position:'fixed',
-    backgroundColor: '#ffffff',
-    justifyContent:'space-between'
+    display: 'flex',
+    width: '100%',
+    height: 'auto',
+    padding: '15px 20px',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 1000,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    boxSizing: 'border-box',
   },
   
   logoContainer: {
@@ -114,6 +120,7 @@ const styles = {
     flex: '1',
     maxWidth: '576px',
     margin: '0 16px',
+    minWidth: '150px', // Ensure it doesn't get too small
   },
   searchIconContainer: {
     position: 'absolute',

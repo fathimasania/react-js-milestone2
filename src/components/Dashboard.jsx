@@ -4,6 +4,8 @@ import Sidebar from '../components/Sidebar';
 import MetricsCards from '../components/MetricCards';
 import { useTheme } from '../hooks/ThemeContext';
 import JobStatistics from '../components/JobStatistics';
+import EmployeeStatus from './EmployeeStatus';
+import EmployeeComposition from './EmployeeComposition';
 
 const Dashboard = () => {
   const { darkMode } = useTheme();
@@ -22,32 +24,45 @@ const Dashboard = () => {
         }}>
           <MetricsCards darkMode={darkMode} />
           <JobStatistics darkMode={darkMode} />
+          <div style={styles.rowContainer}>
+            <EmployeeStatus darkMode={darkMode} />
+            <EmployeeComposition darkMode={darkMode} />
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
 const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-    width:'100vw',
-    overflow: 'hidden', // Prevent any overflow that might cause the black area
+    width: '100vw',
+    // overflowX: 'hidden',
   },
   content: {
     display: 'flex',
     flex: 1,
-    marginTop: '76px', // Match the header height + padding
-    maxWidth: '100%',
+    marginTop: '76px',
+    width: '100%',
   },
   mainArea: {
     flex: 1,
-    marginLeft: '180px', 
-    marginRight: '75px',
-    padding: '20px',
+    marginLeft: { xs: 0, sm: '180px' }, // Responsive margin
+    marginRight: { xs: 0, sm: '75px' },
+    padding: { xs: '10px', sm: '20px' },
     boxSizing: 'border-box',
-  }
+    width: '100%',
+  },
+  rowContainer: {
+    display: 'flex',
+    flexDirection: { xs: 'column', sm: 'row' }, // Column on mobile, row on larger screens
+    gap: '20px',
+    marginTop: '20px',
+    width: '100%',
+  },
 };
 
 export default Dashboard;

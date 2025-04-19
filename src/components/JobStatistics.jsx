@@ -10,27 +10,36 @@ import {
   Legend,
 } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+// Register ChartJS components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const JobStatistics = () => {
+  // Sample data for the chart
   const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
       {
         label: 'Job View',
         data: [52, 62, 70, 58, 44, 58, 64, 77, 67, 58, 50, 72],
-        backgroundColor: 'rgba(233, 232, 252, 1)',
-        borderRadius: 10,
-        barThickness: 30,
+        backgroundColor: '#5E48E8',
+        borderRadius: 3,
+        barThickness: 40,
         categoryPercentage: 0.6,
         barPercentage: 1.0,
       },
       {
         label: 'Job Applied',
         data: [65, 77, 90, 72, 58, 72, 77, 102, 92, 80, 68, 75],
-        backgroundColor: '#5E48E8',
-        borderRadius: 10,
-        barThickness: 20,
+        backgroundColor: "rgba(233, 232, 252, 1)",
+        borderRadius: 3,
+        barThickness: 40,
         categoryPercentage: 0.6,
         barPercentage: 1.0,
       }
@@ -66,7 +75,7 @@ const JobStatistics = () => {
         },
       },
       x: {
-        stacked: true, // Changed from true to false for side-by-side bars
+        stacked: true, 
         grid: { display: false },
         ticks: { color: '#999' },
       }
@@ -74,13 +83,14 @@ const JobStatistics = () => {
     maintainAspectRatio: false,
   };
 
+
   return (
     <div style={styles.container}>
       <div style={styles.headerContainer}>
         <h3 style={styles.title}>Job Statistics</h3>
         <div style={styles.legendContainer}>
           <span style={styles.legendItem}>
-            <span style={{...styles.jobViewColor, border: '1px solid rgba(0,0,0,0.1)'}}></span>
+            <span style={styles.jobViewColor}></span>
             Job View
           </span>
           <span style={styles.legendItem}>
@@ -104,21 +114,22 @@ const JobStatistics = () => {
 
 const styles = {
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     borderRadius: '12px',
-    padding: '24px',
-    boxShadow: '0px 1px 3px rgba(0,0,0,0.1)',
+    padding: '20px',
+    marginTop: '20px',
+    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
   },
   headerContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '16px',
+    marginBottom: '20px',
   },
   title: {
+    fontSize: '18px',
+    fontWeight: '600',
     margin: 0,
-    fontSize: '20px',
-    fontWeight: 600,
     color: '#111827',
   },
   legendContainer: {
@@ -148,16 +159,18 @@ const styles = {
   dropdown: {
     display: 'flex',
     alignItems: 'center',
+    gap: '4px',
     color: '#3B4EF6',
     fontSize: '14px',
-    fontWeight: 500,
+    fontWeight: '500',
     cursor: 'pointer',
   },
   downIcon: {
-    marginLeft: '6px',
+    marginLeft: '4px',
   },
   chartContainer: {
     height: '300px',
+    width: '100%',
   },
 };
 

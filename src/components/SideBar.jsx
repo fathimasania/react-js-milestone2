@@ -34,7 +34,11 @@ const Sidebar = ({darkMode}) => {
     <div style={{
       ...styles.sidebar,
       backgroundColor: darkMode ? '#0D0D0D' : 'white',
-      borderRight: darkMode ? '1px solid #374151' : '1px solid #e5e7eb'
+      borderRight: darkMode ? '1px solid #374151' : '1px solid #e5e7eb',
+      transform: { xs: 'translateX(-100%)', sm: 'translateX(0)' }, // Hide on mobile by default
+      position: { xs: 'fixed', sm: 'relative' }, // Fixed on mobile for overlay effect
+      zIndex: 900,
+      transition: 'transform 0.3s ease',
     }}>
       {/* User profile section */}
       <div style={{
@@ -116,10 +120,10 @@ const Sidebar = ({darkMode}) => {
 
 const styles = {
   sidebar: {
-    width: '250px',
     position: 'fixed',
     left: 0,
     top: '74px',
+    width: { xs: '250px', sm: '250px' },
     height: 'calc(100vh - 76px)',
     display: 'flex',
     flexDirection: 'column',
